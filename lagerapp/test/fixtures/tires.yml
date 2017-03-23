@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  producer: MyString
+  tiresize: MyString
+  dotweak: 1
+  dotyear: 1
+  storage1: false
+  storage2: false
+  rack: MyString
+  case: MyString
+  car: one
+
+two:
+  producer: MyString
+  tiresize: MyString
+  dotweak: 1
+  dotyear: 1
+  storage1: false
+  storage2: false
+  rack: MyString
+  case: MyString
+  car: two

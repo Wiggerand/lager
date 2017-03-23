@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Anrede:</strong>
+  <%= @customer.dear %>
+</p>
+
+<p>
+  <strong>Vorname:</strong>
+  <%= @customer.firstname %>
+</p>
+
+<p>
+  <strong>Nachname:</strong>
+  <%= @customer.lastname %>
+</p>
+
+<p>
+  <strong>Strasse:</strong>
+  <%= @customer.street %>
+</p>
+
+<p>
+  <strong>Stadt:</strong>
+  <%= @customer.city %>
+</p>
+
+<p>
+  <strong>Plz:</strong>
+  <%= @customer.plz %>
+</p>
+
+<p>
+  <strong>Tel:</strong>
+  <%= @customer.tel %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @customer.email %>
+</p>
+
+<p>
+  <strong>Datenschutzerklärung:</strong>
+  <%= db(@customer.privacypolicy) %>
+</p>
+
+<%= link_to 'Ändern', edit_customer_path(@customer), :class => "label label-success" %> | <%= link_to 'Zurück', customers_path, :class => "label label-info" %>

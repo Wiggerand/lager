@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Producer:</strong>
+  <%= @tire.producer %>
+</p>
+
+<p>
+  <strong>Tiresize:</strong>
+  <%= @tire.tiresize %>
+</p>
+
+<p>
+  <strong>Dotweek:</strong>
+  <%= @tire.dotweek %>
+</p>
+
+<p>
+  <strong>Dotyear:</strong>
+  <%= @tire.dotyear %>
+</p>
+
+<p>
+  <strong>Storage1:</strong>
+  <%= @tire.storage1 %>
+</p>
+
+<p>
+  <strong>Storage2:</strong>
+  <%= @tire.storage2 %>
+</p>
+
+<p>
+  <strong>Rack:</strong>
+  <%= @tire.rack %>
+</p>
+
+<p>
+  <strong>Case:</strong>
+  <%= @tire.case %>
+</p>
+
+<p>
+  <strong>Car:</strong>
+  <%= @tire.car.vehicle %>
+</p>
+
+<%= link_to 'Edit', edit_customer_car_tire_path(@customer.id, @car.id, @tire) %> |
+<%= link_to 'Back', customer_car_tires_path %>
