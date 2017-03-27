@@ -88,3 +88,7 @@ Im model customer die validation hinzufügen um das @ in der email Adresse zu er
 	validates :email, presence: true, format: { with: /(\S+)@(\S+)/ }, uniqueness: { case_sensitive: false}
 
 
+
+
+
+######Auf der customer show seite alles anzeigen lassen
