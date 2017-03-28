@@ -1,5 +1,56 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Karteikarte von <%= @customer.lastname %></h1>
+
+  <table class="table table-striped">
+  <thead>
+    <div class="row">
+    <tr>
+      <th><div class="col-md-4">Auto</div></th>
+      <th><div class="col-md-4">Kennzeichen</div></th>
+      <th><div class="col-md-4">Autodaten ändern</div></th>
+      <th><div class="col-md-4">Autodaten löschen</div></th>
+      <th><div class="col-md-4">Reifengröße</div></th>
+      <th><div class="col-md-4">Lagerort</div></th>
+      <th><div class="col-md-4">Regal</div></th>
+      <th><div class="col-md-4">Fach</div></th>
+      <th><div class="col-md-4">DOT</div></th>
+      <th><div class="col-md-4">Reifen hinzufügen</div></th>
+      <th><div class="col-md-4">Reifendaten ändern</div></th>
+      <th><div class="col-md-4">Reifendaten löschen</div></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @customer.cars.each do |ce| %>
+
+        <td><%= ce.vehicle %></td>
+        <td><%= ce.registration %></td>
+        <td><%= link_to 'Auto ändern', edit_customer_car_path(@customer, ce), :class => "label label-warning" %></td>
+        <td><%= link_to 'Auto löschen', customer_car_path(@customer, ce), method: :delete, data: { confirm: 'Bist du sicher das du das KFZ löschen möchtest?' }, :class => "label label-danger" %></td>
+        <td><% ce.tires.each do |ca| %>
+          <%= ca.tiresize %></td>
+        <td><%= store(ca.storage1) %></td>
+        <td><%= ca.rack %></td>
+        <td><%= ca.case %></td>
+        <td><%= ca.dotweek %> <%= ca.dotyear %></td>
+        <td><%= link_to 'Reifen hinzufügen', edit_customer_car_tire_path(@customer, ce, ca), :class => "label label-success" %></td>
+        <td><%= link_to 'Reifen ändern', edit_customer_car_tire_path(@customer, ce, ca), :class => "label label-warning" %></td>
+        <td><%= link_to 'Reifen löschen', root_path, method: :delete, data: { confirm: 'Bist du sicher das du das KFZ löschen möchtest?' }, :class => "label label-danger" %></td>
+        </tr>
+ 
+        <% end %>
+        <% end %>
+    
+  </tbody>
+  </table>
+
+<%= link_to 'Kundendaten ändern', edit_customer_path(@customer), :class => "label label-warning" %> |
+<%= link_to 'Auto hinzufügen', new_customer_car_path(@customer), :class => "label label-success" %> |
+<%= link_to 'Zurück', customer_car_path(@customer), :class => "label label-success" %> | 
+ 
+
+<!--
 <p>
   <strong>Anrede:</strong>
   <%= @customer.dear %>
@@ -44,5 +95,4 @@
   <strong>Datenschutzerklärung:</strong>
   <%= db(@customer.privacypolicy) %>
 </p>
-
-<%= link_to 'Ändern', edit_customer_path(@customer), :class => "label label-success" %> | <%= link_to 'Zurück', customers_path, :class => "label label-info" %>
+-->

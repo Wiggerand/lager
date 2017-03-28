@@ -26,16 +26,16 @@ class TiresController < ApplicationController
   # POST /tires.json
   def create
     @tire = @car.tires.new(tire_params)
-    if(params[:id])
-    @tire.storage1
+   
     respond_to do |format|
       if @tire.save
+         
         format.html { redirect_to customer_car_tires_path(@customer.id, @car.id), notice: 'Tire was successfully created.' }
         format.json { render :show, status: :created, location: @tire }
       else
         format.html { render :new }
         format.json { render json: @tire.errors, status: :unprocessable_entity }
-      end
+      
     end
   end
 end
@@ -58,7 +58,7 @@ end
   def destroy
     @tire.destroy
     respond_to do |format|
-      format.html { redirect_to customer_car_tire_path(@customer.id, @car.id, @tire.id), notice: 'Tire was successfully destroyed.' }
+      format.html { redirect_to customer_car_tires_path(@customer.id, @car.id), notice: 'Tire was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -72,7 +72,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tire_params
-      params.require(:tire).permit(:producer, :tiresize, :dotweek, :dotyear, :storage1, :storage2, :rack, :case, :car_id)
+      params.require(:tire).permit(:producer, :tiresize, :dotweek, :dotyear, :storage1, :rack, :case, :car_id)
     end
 
     def set_customer
