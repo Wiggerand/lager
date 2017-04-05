@@ -1,22 +1,18 @@
 <p id="notice"><%= notice %></p>
+<h2><kbd><%= @customer.lastname %></kbd></h2>
+<h2><kbd>Reifen vom KFZ <%= @car.vehicle %> / <%= @car.registration %></kbd></h2>
 
-<h1>Reifen Kunde <%= @customer.lastname %> <%= @car.registration %></h1>
-
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th><div class="col-md-8">Hersteller</div></th>
-      <th><div class="col-md-8">Reifengrösse</div></th>
-      <th><div class="col-md-8">Dot Woche</div></th>
-      <th><div class="col-md-8">Dot Jahr</div></th>
-      <th><div class="col-md-8">Lager </div></th>
-     <!-- <th><div class="col-md-8">Storage 2</div></th>-->
-      <th><div class="col-md-8">Regal</div></th>
-      <th><div class="col-md-8">Fach</div></th>
-      <th><div class="col-md-8">Auto</div></th>
-      <th><div class="col-md-8">Anzeigen</div></th>
-      <th><div class="col-md-8">Bearbeiten</div></th>
-      <th><div class="col-md-8">Löschen</div></th>
+      <th>Hersteller</th>
+      <th>Reifengrösse</th>
+      <th>Dot Woche</th>
+      <th>Dot Jahr</th>
+      <th>Lager </div></th>
+     <!-- <th>Storage 2</th>-->
+      <th>Regal</div></th>
+      <th>Fach</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,18 +20,14 @@
   <tbody>
     <% @tires.each do |tire| %>
       <tr>
-        <td align="center"><%= tire.producer %></td>
-        <td align="center"><%= tire.tiresize %></td>
-        <td align="center"><%= tire.dotweek %></td>
-        <td align="center"><%= tire.dotyear %></td>
-        <td align="center"><%= store(tire.storage1) %></td>
+        <td><%= tire.producer %></td>
+        <td><%= tire.tiresize %></td>
+        <td><%= tire.dotweek %></td>
+        <td><%= tire.dotyear %></td>
+        <td><%= store(tire.storage1) %></td>
         <!--<td><%= store(tire.storage1) %></td>-->
-        <td align="center"><%= tire.rack %></td>
-        <td align="center"><%= tire.case %></td>
-        <td align="center"><%= tire.car.vehicle %></td>
-        <td align="center"><%= link_to 'Anzeigen',  customer_car_tire_path(@customer.id, @car.id, tire)  %></td>
-        <td align="center"><%= link_to 'Ändern', edit_customer_car_tire_path(@customer.id, @car.id, tire) %></td>
-        <td align="center"><%= link_to 'Löschen', customer_car_tire_path(@customer.id, @car.id, tire), method: :delete, data: { confirm: 'Bist du dir sicher die Reifen zu löschen?' } %></td>
+        <td><%= tire.rack %></td>
+        <td><%= tire.case %></td>
       </tr>
     <% end %>
   </tbody>
@@ -43,6 +35,6 @@
 
 <br>
 
-<%= link_to 'Neue Reifen anlegen', new_customer_car_tire_path %>
+<%= link_to 'Reifen ändern', edit_customer_car_tire_path(@customer, @car, @tires.first), :class => "label label-warning" %>
 </br>
-<%= link_to 'Zurück', customer_cars_path(@customer.id) %>
+<%= link_to 'Zurück', customer_path(@customer), :class => "label label-info" %>

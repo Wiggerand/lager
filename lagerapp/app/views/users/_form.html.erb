@@ -15,12 +15,12 @@
     <p><%= f.label :loginname %></p>
     <%= f.text_field :loginname %>
   </div>
-
+<% if current_user_admin? %>
   <div class="field">
     <%= f.label :admin %>
     <%= f.check_box :admin %>
   </div>
-
+<% end %>
   <div class="field">
     <%= f.label :password %>
     <%= f.password_field :password %>

@@ -1,6 +1,7 @@
-<h1>Editing Car</h1>
+<h2><kbd>Karteikarte von <%= @customer.lastname %></kbd></h2>
+<h3><kbd>KFZ Daten ändern</kbd></h3>
 
 <%= render 'form', car: @car %>
 
-<%= link_to 'Show', customer_car_path %> |
-<%= link_to 'Back', customer_cars_path %>
+
+<%= link_to 'Zurück', customer_path(@customer), :class => "label label-info" %>

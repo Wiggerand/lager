@@ -1,10 +1,11 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
- 
+ # before_action :sendmail
   # GET /customers
   # GET /customers.json
   def index
     @customers = Customer.all
+    
   end
 
   # GET /customers/1
@@ -25,7 +26,6 @@ class CustomersController < ApplicationController
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
-
     respond_to do |format|
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
@@ -42,7 +42,7 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
+        format.html { redirect_to customers_path, notice: 'Kundendaten wurden erfolreich geändert.' }
         format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit }
@@ -61,6 +61,18 @@ class CustomersController < ApplicationController
     end
   end
 
+   def sendmail
+     # @customer = Customer.first
+     # mail(to: @customer.email, subject: 'Welcome to My Awesome Site')
+      @customers = Customer.all
+      @customers.each do |customer|
+      CustomerMailer.send_mail(customer).deliver_later
+      #redirect_to root_path, notice: 'Email is send out.' Läuft noch nicht--------------------------------
+
+    end
+      #redirect_to customer_path, notice: 'Email is send out.'
+    end    
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
@@ -71,4 +83,6 @@ class CustomersController < ApplicationController
     def customer_params
       params.require(:customer).permit(:dear, :firstname, :lastname, :street, :city, :plz, :tel, :email, :privacypolicy)
     end
+
+   
 end

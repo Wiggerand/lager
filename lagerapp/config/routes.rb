@@ -4,11 +4,15 @@ Rails.application.routes.draw do
   
 
   get 'signup' => 'users#new'
+
+  get 'sendmail' => 'customers#sendmail'
+
   resources :users
   root 'customers#index'
 
     resources :customers do
-    	resources :cars do
+      
+      resources :cars do
         resources :tires
       end
     end

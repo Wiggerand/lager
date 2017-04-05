@@ -30,7 +30,7 @@ class TiresController < ApplicationController
     respond_to do |format|
       if @tire.save
          
-        format.html { redirect_to customer_car_tires_path(@customer.id, @car.id), notice: 'Tire was successfully created.' }
+        format.html { redirect_to customer_path(@customer.id), notice: 'Reifen wurden der Datenbank hinzugefügt.' }
         format.json { render :show, status: :created, location: @tire }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ end
   def update
     respond_to do |format|
       if @tire.update(tire_params)
-        format.html { redirect_to customer_car_tire_path(@customer.id, @car.id, @tire.id), notice: 'Tire was successfully updated.' }
+        format.html { redirect_to customer_path(@customer), notice: 'Die Reifen wurden geändert in der Datenbank.' }
         format.json { render :show, status: :ok, location: @tire }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ end
   def destroy
     @tire.destroy
     respond_to do |format|
-      format.html { redirect_to customer_car_tires_path(@customer.id, @car.id), notice: 'Tire was successfully destroyed.' }
+      format.html { redirect_to customer_path(@customer), notice: 'Die Reifen wurden aus der Datenbank entfernt.' }
       format.json { head :no_content }
     end
   end

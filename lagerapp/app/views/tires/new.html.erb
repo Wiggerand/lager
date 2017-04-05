@@ -1,5 +1,6 @@
-<h1>New Tire</h1>
+<h2><kbd>Karteikarte von <%= @customer.lastname %></kbd></h2>
+<h2><kbd>Reifen für <%= @car.vehicle %> / <%= @car.registration %> hinzufügen</kbd></h2>
 
 <%= render 'form', tire: @tire %>
 
-<%= link_to 'Back', customer_car_tires_path(@customer.id) %>
+<%= link_to 'Back', customer_path(@customer), :class => "label label-info" %>

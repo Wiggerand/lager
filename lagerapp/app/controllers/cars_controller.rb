@@ -29,7 +29,7 @@ class CarsController < ApplicationController
 
     respond_to do |format|
       if @car.save
-        format.html { redirect_to customer_cars_path(@customer.id, @car.id), notice: 'Car was successfully created.' }
+        format.html { redirect_to customer_path(@customer.id), notice: 'Das KFZ wurde angelegt.' }
         format.json { render :show, status: :created, location: @car }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class CarsController < ApplicationController
   def update
     respond_to do |format|
       if @car.update(car_params)
-        format.html { redirect_to customer_car_path(@customer.id, @car.id), notice: 'Car was successfully updated.' }
+        format.html { redirect_to customer_path(@customer.id), notice: 'Die KFZ Daten wurden geändert.' }
         format.json { render :show, status: :ok, location: @car }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class CarsController < ApplicationController
   def destroy
     @car.destroy
     respond_to do |format|
-      format.html { redirect_to customer_cars_path(@customer.id), notice: 'Car was successfully destroyed.' }
+      format.html { redirect_to customer_path(@customer.id), notice: 'Das KFZ wurde aus der Kundenkartei gelöscht.' }
       format.json { head :no_content }
     end
   end
