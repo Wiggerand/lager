@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1><kbd>KFZ <%= @customer.lastname %></kbd></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><div class="col-md-8">Fahrzeug</div></th>
+      <th><div class="col-md-8">Kennzeichen</div></th>
+      <th><div class="col-md-8">Kunde</div></th>
+      <th><div class="col-md-8">Anzeigen</div></th>
+      <th><div class="col-md-8">Reifen anzeigen/hinzufügen</div></th>
+      <th><div class="col-md-8">Ändern</div></th>
+      <th><div class="col-md-8">Löschen</div></th>
+
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cars.each do |car| %>
+      <tr>
+        <td align="center"><%= car.vehicle %></td>
+        <td align="center"><%= car.registration %></td>
+        <td align="center"><%= car.customer.firstname %> <%= car.customer.lastname %></td>
+        <td align="center"><%= link_to 'Fahrzeug anzeigen', customer_car_path(@customer.id, car) %></td>
+        <td align="center"><%= link_to 'Reifen', customer_car_tires_path(@customer.id, car) %></td>
+        <td align="center"><%= link_to 'Ändern', edit_customer_car_path(@customer.id, car) %></td>
+        <td align="center"><%= link_to 'Löschen', customer_car_path(@customer.id, car), method: :delete, data: { confirm: 'Bist du dir sicher das KFZ zu löschen?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Neues KFZ anlegen', new_customer_car_path(@customer) %>
+</br>
+<%= link_to 'Zurück', root_path %>

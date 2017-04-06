@@ -39,15 +39,15 @@ class Tire < ApplicationRecord
   validates :tiresize, inclusion: { in: TIRESIZE_OPTIONS }
 
   DOTWEEK_OPTIONS = (
-    01..52
+     01..52
     )
  # validates :dotweek, inclusion: { in: DOTWEEK_OPTIONS }
 
-  DOTYEAR_OPTIONS = (10..17)
+  DOTYEAR_OPTIONS = (2010..2017)
   #validates :dotyear, inclusion: { in: DOTYEAR_OPTIONS }
 
   RACK_OPTIONS = [
-    '1','2','3','4','5','6','7','8'
+    '1','2','3','4','5','6','7','8','9','10'
   ]
 
   validates :rack, inclusion: { in: RACK_OPTIONS }

@@ -1,0 +1,7 @@
+<h2><kbd><%= @customer.lastname %></kbd></h2>
+<h2><kbd>KFZ hinzufügen</kbd></h2>
+
+<%= render 'form', car: @car %>
+
+<%= link_to 'Back', customer_path(@customer), :class => "label label-info" %>
+ 

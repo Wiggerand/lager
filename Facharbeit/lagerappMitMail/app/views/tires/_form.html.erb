@@ -1,0 +1,58 @@
+<%= form_for([@customer, @car, @tire]) do |f| %>
+  <% if tire.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tire.errors.count, "error") %> prohibited this tire from being saved:</h2>
+
+      <ul>
+      <% tire.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :producer %>
+    <%= f.select :producer, Tire::PRODUCER_OPTIONS, prompt: "Reifen Hersteller wählen" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tiresize %>
+    <%= f.select :tiresize, Tire::TIRESIZE_OPTIONS, prompt: "Reifengröße wählen" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :dotweek %>
+    <%= f.select :dotweek, Tire::DOTWEEK_OPTIONS, prompt: "Dot Woche wählen" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :dotyear %>
+    <%= f.select :dotyear, Tire::DOTYEAR_OPTIONS, prompt: "Dot Jahr wählen" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :storage1 %>
+    <%= f.radio_button :storage1, true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :storage2 %>
+    <%= f.radio_button :storage1, false %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rack %>
+    <%= f.select :rack, Tire::RACK_OPTIONS, prompt: "Regal wählen" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :case %>
+    <%= f.select :case, Tire::CASE_OPTIONS, prompt: "Fach wählen" %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

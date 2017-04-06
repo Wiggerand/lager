@@ -2,7 +2,8 @@
 
 
 <h2><kbd>Karteikarte von <%= @customer.lastname %></kbd></h2>
-
+  <%  date = DateTime.now() %>
+  <% cal = date.strftime("%Y").to_i %>
 
   <table class="table table-striped">
   <thead>
@@ -37,7 +38,11 @@
             <td><%= store(ca.storage1) %></td>
             <td><%= ca.rack %></td>
             <td><%= ca.case %></td>
-            <td><%= ca.dotweek %> <%= ca.dotyear %></td>
+             <% if cal - ca.dotyear <= 3 %>
+            <td class="success"><%= ca.dotweek %> <%= ca.dotyear %></td>
+             <% else %>
+            <td class="text-danger danger"><%= ca.dotweek %> <%= ca.dotyear %></td>
+             <% end %>
             <td align="center"><%= link_to 'Lagerort anzeigen', customer_car_tires_path(@customer, ce, ca), :class => "label label-info" %></td>
             <td><%= link_to 'Reifen ändern', edit_customer_car_tire_path(@customer, ce, ca), :class => "label label-warning" %></td>
             <td><%= link_to 'Reifen löschen', customer_car_tire_path(@customer, ce, ca), method: :delete, data: { confirm: 'Bist du sicher das du die Reifen löschen möchtest?' }, :class => "label label-danger" %></td>        

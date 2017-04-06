@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1><kbd>Mitarbeiter</kbd></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Log In Name</th>
+      <th>Admin</th>
+    <% if current_user_admin? %>
+      <th>Ändern</th>
+      <th>Löschen</th>
+    <% end %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.loginname %></td>
+        <td><%= user.admin %></td>
+     <% if current_user_admin? %> 
+        <td><%= link_to 'Ändern', edit_user_path(user), :class => "label label-warning" %></td>
+        <td><%= link_to 'Löschen', user, method: :delete, data: { confirm: 'Soll der Mitarbeiter wirklich gelöscht werden?' }, :class => "label label-danger" %></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+  <% if current_user_admin? %>
+<%= link_to 'Neuen Mitarbeiter anlegen', new_user_path, :class => "label label-success" %>
+  <% end %>

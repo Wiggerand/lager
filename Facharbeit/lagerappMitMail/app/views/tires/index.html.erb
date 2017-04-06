@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+<h2><kbd><%= @customer.lastname %></kbd></h2>
+<h2><kbd>Reifen vom KFZ <%= @car.vehicle %> / <%= @car.registration %></kbd></h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Hersteller</th>
+      <th>Reifengrösse</th>
+      <th>Dot Woche</th>
+      <th>Dot Jahr</th>
+      <th>Lager </div></th>
+     <!-- <th>Storage 2</th>-->
+      <th>Regal</div></th>
+      <th>Fach</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tires.each do |tire| %>
+      <tr>
+        <td><%= tire.producer %></td>
+        <td><%= tire.tiresize %></td>
+        <td><%= tire.dotweek %></td>
+        <td><%= tire.dotyear %></td>
+        <td><%= store(tire.storage1) %></td>
+        <!--<td><%= store(tire.storage1) %></td>-->
+        <td><%= tire.rack %></td>
+        <td><%= tire.case %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Reifen ändern', edit_customer_car_tire_path(@customer, @car, @tires.first), :class => "label label-warning" %>
+</br>
+<%= link_to 'Zurück', customer_path(@customer), :class => "label label-info" %>

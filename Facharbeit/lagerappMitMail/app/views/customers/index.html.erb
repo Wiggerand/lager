@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+ 
+<h1><kbd>Kunden Kartei</kbd></h1>
+
+
+
+<table class="table table-striped">
+  <thead>
+    <div class="row">
+    <tr>
+    <% if current_user %>
+      <th>Anrede</th>
+      <th>Vorname</th>
+      <th>Nachname</th>
+      <th>Strasse</th>
+      <th>Stadt</th>
+      <th>Plz</th>
+      <th>Tel</th>
+      <th>E-Mail</th>
+      <th>Datenschutzerklärung</th>
+      <th>Anzahl&nbspAutos</th>
+      <th>Anzeigen</th>
+    <% if current_user.admin? %>
+      <th>Kundendaten&nbspändern</th>  <!--&nbsp erzeugt ein Leerzeichen ohne umbruch -->
+      <th>Löschen</th>
+    <% end %>
+    <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+      <% if current_user %>
+        <td><%= customer.dear %></td>
+        <td><%= customer.firstname %></td>
+        <td><%= customer.lastname %></td>
+        <td><%= customer.street %></td>
+        <td><%= customer.city %></td>
+        <td><%= customer.plz %></td>
+        <td><%= customer.tel %></td>
+        <td><%= customer.email %></td>
+        <td align="center"><%= db(customer.privacypolicy) %></td>     <!--helper true/Liegt vor/ flase/Liegt nicht vor-->
+        <td align="center"><%= customer.cars.count %></td>
+        <td><%= link_to 'Kunde anzeigen', customer_path(customer), :class => "label label-info" %></td>
+      <% if current_user.admin? %>
+        <td align="center"><%= link_to 'Ändern', edit_customer_path(customer), :class => "label label-warning" %></td>
+        <td align="center"><%= link_to 'Löschen', customer, :class => "label label-danger", method: :delete, data: { confirm: 'Bist du sicher das du den Kunden löschen möchtest?' } %></td>
+      <% end %>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Neuen Kunden anlegen', new_customer_path, :class =>"label label-success" if current_user %></br></br>
+
